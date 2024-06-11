@@ -7,6 +7,8 @@ import { IoMoonSharp } from "react-icons/io5";
 import Logo from "../../../public/Logo.png";
 import LogoDark from "@/../public/Logo-dark.png";
 import Link from "next/link";
+import { useUser, UserButton } from "@clerk/nextjs";
+import { Button } from "../ui/button";
 
 const menuItems = [
   {
@@ -46,6 +48,8 @@ export function Navbar() {
       setIsDarkMode(true);
     }
   }, []);
+
+  const { user, isSignedIn } = useUser();
 
   return (
     <div className="dark:bg-[#181A2A] relative w-full bg-white">
@@ -94,6 +98,15 @@ export function Navbar() {
               ></div>
             </label>
             <IoMoonSharp />
+            <div className="ms-5">
+              {isSignedIn ? (
+                <UserButton />
+              ) : (
+                <Link href={"/sign-up"}>
+                  <Button variant="default">Sign up</Button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
         <div className="ml-2 mt-2 hidden lg:block"></div>
