@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 
 const workSans = Work_Sans({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={`${workSans.className}`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

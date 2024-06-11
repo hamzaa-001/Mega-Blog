@@ -6,15 +6,16 @@ import { Menu, X, Search } from "lucide-react";
 import { IoMoonSharp } from "react-icons/io5";
 import Logo from "../../../public/Logo.png";
 import LogoDark from "@/../public/Logo-dark.png";
+import Link from "next/link";
 
 const menuItems = [
   {
     name: "Home",
-    href: "#",
+    href: "/",
   },
   {
     name: "All Blogs",
-    href: "#",
+    href: "/all-blogs",
   },
   {
     name: "Contact",
@@ -64,12 +65,12 @@ export function Navbar() {
           <ul className="ml-12 inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
+                <Link
                   href={item.href}
-                  className="inline-flex items-center text-sm text-gray-800 hover:text-gray-900 dark:text-white"
+                  className="inline-flex items-center text-sm text-gray-800 hover:text-gray-900 dark:text-white dark:hover:text-gray-300"
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -127,7 +128,7 @@ export function Navbar() {
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className="-m-3 flex items-center rounded-md p-3 text-sm hover:bg-gray-50 dark:text-white"
@@ -135,7 +136,7 @@ export function Navbar() {
                         <span className="ml-3 text-base font-medium text-gray-900 dark:text-white">
                           {item.name}
                         </span>
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
