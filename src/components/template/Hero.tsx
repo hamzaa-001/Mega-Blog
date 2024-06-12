@@ -1,15 +1,33 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainBlog from "@/../public/main-blog.png";
 import ProfileDemo from "@/../public/profile-demo.png";
 
 const Hero = () => {
+  const [latestBlog, setLatestBlog] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await fetch(`/api/blogs`);
+      const data = await response.json();
+      const slug = data.result.pop();
+      setLatestBlog(slug);
+    };
+    fetchBlogs();
+  }, []);
+
+  console.log("🚀 ~ Hero ~ latestBlog:", latestBlog);
+
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
       <div className="relative">
         <div className="relative bg-white rounded-lg  overflow-hidden">
-          <Image
-            src={MainBlog}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            // @ts-ignore
+            src={latestBlog?.blog_imgPath}
             alt="Technology"
             className="w-full h-[500px] object-cover"
           />
@@ -19,8 +37,8 @@ const Hero = () => {
             Technology
           </span>
           <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
-            The Impact of Technology on the Workplace: How Technology is
-            Changing
+            {/* @ts-ignore */}
+            {latestBlog?.blog_title}
           </h2>
           <div className="mt-4 flex items-center">
             <Image
@@ -30,9 +48,12 @@ const Hero = () => {
             />
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-900 dark:text-white">
-                Jason Francisco
+                {/* @ts-ignore */}
+                {latestBlog?.author}
               </p>
-              <p className="text-xs text-gray-500 ">August 20, 2022</p>
+              {/* @ts-ignore */}
+
+              <p className="text-xs text-gray-500 ">{latestBlog?.created_at}</p>
             </div>
           </div>
         </div>

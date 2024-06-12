@@ -71,7 +71,7 @@ export function Navbar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="inline-flex items-center text-sm text-gray-800 hover:text-gray-900 dark:text-white dark:hover:text-gray-300"
+                  className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-white dark:hover:text-gray-300"
                 >
                   {item.name}
                 </Link>
@@ -144,7 +144,7 @@ export function Navbar() {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-m-3 flex items-center rounded-md p-3 text-sm hover:bg-gray-50 dark:text-white"
+                        className="-m-3 flex items-center rounded-md p-3 text-sm  dark:text-white"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900 dark:text-white">
                           {item.name}

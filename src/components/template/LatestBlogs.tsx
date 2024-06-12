@@ -1,9 +1,23 @@
+"use client";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import BlogCard from "./BlogCard";
+import { useEffect, useState } from "react";
 
 const LatestBlogs = () => {
-  const blogs = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [allBlogs, setAllBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await fetch("/api/blogs");
+      const data = await response.json();
+      setAllBlogs(data.result.reverse());
+    };
+    fetchBlogs();
+  }, []);
+
+  console.log("🚀 ~ LatestBlogs ~ allBlogs:", allBlogs);
+
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
       <div className="my-8">
@@ -12,8 +26,22 @@ const LatestBlogs = () => {
         </h1>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-10 place-items-center">
-        {blogs.map((blog, index) => (
-          <BlogCard key={index} />
+        {allBlogs.map((blog, index) => (
+          <BlogCard
+            key={index}
+            //@ts-ignore
+            id={blog._id}
+            //@ts-ignore
+            title={blog.blog_title}
+            //@ts-ignore
+            imgUrl={blog.blog_imgPath}
+            //@ts-ignore
+            author={blog.author}
+            //@ts-ignore
+            content={blog.blog_content}
+            //@ts-ignore
+            createdAt={blog.created_at}
+          />
         ))}
       </div>
       <div className="flex items-center justify-center mt-10">
