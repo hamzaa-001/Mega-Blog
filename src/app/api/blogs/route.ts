@@ -18,7 +18,7 @@ export async function GET(): Promise<NextResponse<ResponseData>> {
   }
 
   try {
-    const data = await Blog.find().exec(); 
+    const data = await Blog.find().exec();
     return NextResponse.json({ result: data, success: "true" });
   } catch (error) {
     console.error("Error retrieving data:", error);

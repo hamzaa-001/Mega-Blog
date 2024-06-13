@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Menu, X, Search } from "lucide-react";
 import { IoMoonSharp } from "react-icons/io5";
+import { IoMdSunny } from "react-icons/io";
 import Logo from "../../../public/Logo.png";
 import LogoDark from "@/../public/Logo-dark.png";
 import Link from "next/link";
@@ -21,7 +22,7 @@ const menuItems = [
   },
   {
     name: "Contact",
-    href: "#",
+    href: "/contact-us",
   },
 ];
 
@@ -29,12 +30,24 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      document.body.classList.add("dark");
+      setIsDarkMode(true);
+    } else {
+      document.body.classList.remove("dark");
+      setIsDarkMode(false);
+    }
+  }, []);
   const toggleTheme = () => {
     if (document.body.classList.contains("dark")) {
       document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
       setIsDarkMode(false);
     } else {
       document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
       setIsDarkMode(true);
     }
   };
@@ -90,14 +103,13 @@ export function Navbar() {
             <Search className="text-gray-600 cursor-pointer" />
           </div>
           <div className="hidden md:block ml-3 md:flex items-center space-x-2 ">
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" value="" className="sr-only peer" />
-              <div
-                className="file:group peer ring-0  bg-gradient-to-bl from-gray-500 to-gray-200  rounded-full outline-none duration-1000 after:duration-300 w-12 h-6  shadow-md  peer-focus:outline-none  after:content-[''] after:rounded-full after:absolute   peer-checked:after:rotate-180 after:bg-white after:outline-none after:h-4 after:w-4 after:top-1 after:left-1   peer-checked:after:translate-x-6 peer-hover:after:scale-95 peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-blue-900"
-                onClick={toggleTheme}
-              ></div>
-            </label>
-            <IoMoonSharp />
+            <button
+              className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
+              onClick={toggleTheme}
+            >
+              {isDarkMode ? <IoMoonSharp /> : <IoMdSunny />}
+            </button>
+
             <div className="ms-5">
               {isSignedIn ? (
                 <UserButton />
@@ -154,13 +166,12 @@ export function Navbar() {
                   </nav>
                 </div>
                 <div className="ml-3 mt-4 flex items-center space-x-2">
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" value="" className="sr-only peer" />
-                    <div
-                      className="file:group peer ring-0  bg-gradient-to-bl from-gray-500 to-gray-200  rounded-full outline-none duration-1000 after:duration-300 w-12 h-6  shadow-md  peer-focus:outline-none  after:content-[''] after:rounded-full after:absolute   peer-checked:after:rotate-180 after:bg-white after:outline-none after:h-4 after:w-4 after:top-1 after:left-1   peer-checked:after:translate-x-6 peer-hover:after:scale-95 peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-blue-900"
-                      onClick={toggleTheme}
-                    ></div>
-                  </label>
+                  <button
+                    className="h-10 w-10 flex items-center justify-center rounded-lg p-2   hover:bg-gray-100 dark:hover:bg-[#242535]"
+                    onClick={toggleTheme}
+                  >
+                    {isDarkMode ? <IoMoonSharp /> : <IoMdSunny />}
+                  </button>
                 </div>
               </div>
             </div>

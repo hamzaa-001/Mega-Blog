@@ -3,20 +3,21 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import BlogCard from "./BlogCard";
 import { useEffect, useState } from "react";
+import SkeletonCard from "./SkeletonCard";
 
 const LatestBlogs = () => {
   const [allBlogs, setAllBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       const response = await fetch("/api/blogs");
       const data = await response.json();
       setAllBlogs(data.result.reverse());
+      setIsLoading(false);
     };
     fetchBlogs();
   }, []);
-
-  console.log("🚀 ~ LatestBlogs ~ allBlogs:", allBlogs);
 
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
@@ -26,23 +27,29 @@ const LatestBlogs = () => {
         </h1>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-10 place-items-center">
-        {allBlogs.map((blog, index) => (
-          <BlogCard
-            key={index}
-            //@ts-ignore
-            id={blog._id}
-            //@ts-ignore
-            title={blog.blog_title}
-            //@ts-ignore
-            imgUrl={blog.blog_imgPath}
-            //@ts-ignore
-            author={blog.author}
-            //@ts-ignore
-            content={blog.blog_content}
-            //@ts-ignore
-            createdAt={blog.created_at}
-          />
-        ))}
+        {isLoading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))
+          : allBlogs.map((blog, index) => (
+              <BlogCard
+                key={index}
+                //@ts-ignore
+                id={blog._id}
+                //@ts-ignore
+                title={blog.blog_title}
+                //@ts-ignore
+                imgUrl={blog.blog_imgPath}
+                //@ts-ignore
+                author={blog.author}
+                //@ts-ignore
+                content={blog.blog_content}
+                //@ts-ignore
+                createdAt={blog.created_at}
+                //@ts-ignore
+                category={blog.category}
+              />
+            ))}
       </div>
       <div className="flex items-center justify-center mt-10">
         <Link href={"/all-blogs"}>

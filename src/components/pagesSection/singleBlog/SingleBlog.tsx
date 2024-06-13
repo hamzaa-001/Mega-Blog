@@ -6,6 +6,17 @@ import mainImage from "@/../public/main-blog.png";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+//@ts-ignore
+const formatBlogContent = (content) => {
+  content = content.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+
+  content = content.replace(/\*(.*?)\*/g, "<i>$1</i>");
+
+  content = content.replace(/~~/g, "<br />");
+
+  return content;
+};
+
 const SingleBlog = () => {
   const params = useParams();
   const id = params.id;
@@ -26,7 +37,7 @@ const SingleBlog = () => {
     singleBlog;
   return (
     <>
-      {singleBlog ? (
+      {blog_imgPath ? (
         <div>
           <div className="text-black dark:text-white p-4 sm:p-8 lg:p-12 max-w-4xl mx-auto">
             <div className="mb-6">
@@ -57,15 +68,12 @@ const SingleBlog = () => {
                 className="w-[800px] h-[400px] rounded-lg"
               />
             </div>
-            <div className=" space-y-6 text-gray-500">
-              <p>{blog_content}</p>
-
-              <blockquote className="p-4 italic border-l-4 bg-gray-100 dark:bg-gray-900 text-gray-500 border-gray-500 quote">
-                “Traveling can expose you to new environments and potential
-                health risks. It’s crucial to stay proactive to stay safe and
-                healthy.”
-              </blockquote>
-            </div>
+            <div
+              className="space-y-6 text-gray-500"
+              dangerouslySetInnerHTML={{
+                __html: formatBlogContent(blog_content),
+              }}
+            ></div>
           </div>
         </div>
       ) : (
