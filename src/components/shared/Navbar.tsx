@@ -10,6 +10,7 @@ import LogoDark from "@/../public/Logo-dark.png";
 import Link from "next/link";
 import { useUser, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
+import { FaPlus } from "react-icons/fa6";
 
 const menuItems = [
   {
@@ -102,15 +103,26 @@ export function Navbar() {
             ></input>
             <Search className="text-gray-600 cursor-pointer" />
           </div>
-          <div className="hidden md:block ml-3 md:flex items-center space-x-2 ">
+
+          <div className="hidden  ml-3 md:flex items-center space-x-2 ">
+            <Link href={"/create-blog"}>
+              <button
+                className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
+                title="Create New Blog"
+              >
+                <FaPlus />
+              </button>
+            </Link>
+
             <button
               className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
+              title="Change Theme"
               onClick={toggleTheme}
             >
               {isDarkMode ? <IoMoonSharp /> : <IoMdSunny />}
             </button>
 
-            <div className="ms-5">
+            <div className="ml-3">
               {isSignedIn ? (
                 <UserButton />
               ) : (

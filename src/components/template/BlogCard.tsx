@@ -5,7 +5,15 @@ import Image from "next/image";
 import ProfileDemo from "@/../public/profile-demo.png";
 import Link from "next/link";
 
-const BlogCard = ({ title, imgUrl, author, createdAt, id, category }) => {
+const BlogCard = ({
+  title,
+  imgUrl,
+  author,
+  createdAt,
+  id,
+  category,
+  author_avatar,
+}) => {
   return (
     <>
       <div className="w-[300px] p-2 bg-white dark:bg-[#181A2A] rounded-lg overflow-hidden outline-1 outline-offset-8 outline-gray-300 outline-double dark:outline-gray-700">
@@ -24,9 +32,10 @@ const BlogCard = ({ title, imgUrl, author, createdAt, id, category }) => {
               {title}
             </h2>
             <div className="mt-4 flex items-center">
-              <Image
-                src={ProfileDemo}
-                alt="Tracey Wilson"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={author_avatar}
+                alt="Profile"
                 className="w-10 h-10 rounded-full"
               />
               <div className="ml-3">

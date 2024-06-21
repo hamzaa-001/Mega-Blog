@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import "@uploadthing/react/styles.css";
 
 const workSans = Work_Sans({ subsets: ["latin"] });
 

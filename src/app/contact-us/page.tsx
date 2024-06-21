@@ -48,7 +48,7 @@ export default function ContactPage() {
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Get in Touch
             </h1>
-            <p className="mt-3 text-lg text-gray-500 dark:text-gray-400">
+            <p className="mt-3 text-md text-gray-500 dark:text-gray-400">
               Have a question or want to work together? Fill out the form below
               and I&apos;ll get back to you as soon as possible.
             </p>
@@ -80,7 +80,7 @@ export default function ContactPage() {
                     type="text"
                     placeholder="Your name"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none"
+                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     type="email"
                     placeholder="Your email address"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none"
+                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   rows={5}
                   placeholder="Your message"
                   required
-                  className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none"
+                  className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />

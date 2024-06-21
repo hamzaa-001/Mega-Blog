@@ -46,6 +46,8 @@ const LatestBlogs = () => {
                 createdAt={blog.created_at}
                 //@ts-ignore
                 category={blog.category}
+                //@ts-ignore
+                author_avatar={blog.author_avatar}
               />
             ))}
       </div>

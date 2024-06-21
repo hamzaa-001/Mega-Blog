@@ -25,3 +25,54 @@ export async function GET(): Promise<NextResponse<ResponseData>> {
     return NextResponse.json({ result: null, success: "false" });
   }
 }
+
+export async function POST(req: Request) {
+  try {
+    // Connect to the database
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(DATABASE_URI, {
+        //@ts-ignore
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+    }
+
+    const data = await req.json();
+    const {
+      blog_imgPath,
+      blog_title,
+      author,
+      blog_content,
+      created_at,
+      category,
+      author_avatar,
+    } = data;
+
+    // Create a new blog post
+    const newBlog = new Blog({
+      blog_imgPath,
+      blog_title,
+      author,
+      blog_content,
+      created_at,
+      category,
+      author_avatar,
+    });
+
+    // Save the blog post to the database
+    const savedBlog = await newBlog.save();
+
+    // Return success response with the saved blog post data
+    return NextResponse.json(
+      { success: true, data: savedBlog },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating blog post:", error);
+    return NextResponse.json(
+      //@ts-ignore
+      { success: false, error: error?.message },
+      { status: 400 }
+    );
+  }
+}

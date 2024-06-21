@@ -59,12 +59,11 @@ const LatestBlog = () => {
                 {latestBlog?.blog_title}
               </h3>
               <div className="mt-4 flex items-center text-sm">
-                <Image
-                  src={profilePic}
+                <img
+                  //@ts-ignore
+                  src={latestBlog?.author_avatar}
                   alt="Profile Pic"
-                  width={30}
-                  height={30}
-                  className="rounded-full"
+                  className="w-10 h-10 rounded-full"
                 />
                 <div className="ml-2">
                   {/* @ts-ignore */}

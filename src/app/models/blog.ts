@@ -3,11 +3,12 @@ import mongoose, { Schema, model, models } from "mongoose";
 const blogSchema = new Schema({
   blog_imgPath: {
     type: String,
-    required: true,
   },
   blog_title: {
     type: String,
-    required: true,
+  },
+  author_avatar: {
+    type: String,
   },
   author: {
     type: String,
@@ -16,6 +17,9 @@ const blogSchema = new Schema({
     type: String,
   },
   created_at: {
+    type: String,
+  },
+  category: {
     type: String,
   },
 });
