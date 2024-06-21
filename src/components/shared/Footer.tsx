@@ -9,18 +9,18 @@ const Footer = () => {
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               About
             </h2>
-            <p className="lg:w-2/4 w-full mt-4 text-sm text-gray-600 dark:text-gray-500">
+            <p className="lg:w-3/4 w-full mt-4 text-sm text-gray-600 dark:text-gray-500">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam.
             </p>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-500">
               <span className="dark:text-white font-semibold">Email:</span>
-              info@jsstemplate.net
+              &nbsp;for.hamza007@gmail.com
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-500">
-              <span className="dark:text-white font-semibold">Phone:</span> 880
-              123 456 789
+              <span className="dark:text-white font-semibold">Phone:</span>{" "}
+              &nbsp;880 123 456 789
             </p>
           </div>
 
@@ -29,7 +29,7 @@ const Footer = () => {
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 Quick Link
               </h2>
-              <ul className="mt-4 text-sm text-gray-600 dark:text-gray-500">
+              <ul className="mt-4 text-sm text-gray-600 dark:text-gray-500 list-none">
                 <li>
                   <a href="#" className="hover:underline">
                     Home
@@ -68,7 +68,7 @@ const Footer = () => {
                 Category
               </h2>
 
-              <ul className="mt-4 text-sm text-gray-600 dark:text-gray-500">
+              <ul className="mt-4 text-sm text-gray-600 dark:text-gray-500 list-none">
                 <li>
                   <a href="#" className="hover:underline">
                     Lifestyle
@@ -102,20 +102,20 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-1">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 Weekly Newsletter
               </h2>
               <p className="mt-4 text-sm text-gray-600 dark:text-gray-500">
                 Get blog articles and offers via email.
               </p>
-              <form className=" mt-4 flex flex-col gap-2">
+              <form className="mt-4 flex flex-col gap-2">
                 <input
                   type="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none  dark:bg-[#242535]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none  dark:bg-[#242535] text-xs"
                   placeholder="Your Email"
                 />
-                <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-xs">
                   Subscribe
                 </button>
               </form>

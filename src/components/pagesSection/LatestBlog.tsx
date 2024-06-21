@@ -66,8 +66,10 @@ const LatestBlog = () => {
                   className="w-10 h-10 rounded-full"
                 />
                 <div className="ml-2">
-                  {/* @ts-ignore */}
-                  <p>{latestBlog?.author}</p>
+                  <p>
+                    {/* @ts-ignore */}
+                    {latestBlog?.author ? `${latestBlog?.author}` : "Anonymous"}
+                  </p>
                   <p className="text-gray-300">
                     {/* @ts-ignore */}
                     {latestBlog?.created_at}

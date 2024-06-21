@@ -20,8 +20,6 @@ const Hero = () => {
     fetchBlogs();
   }, []);
 
-  console.log("🚀 ~ Hero ~ latestBlog:", latestBlog);
-
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
       {isLoading ? (
@@ -71,7 +69,7 @@ const Hero = () => {
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-900 dark:text-white">
                   {/* @ts-ignore */}
-                  {latestBlog?.author}
+                  {latestBlog?.author ? `${latestBlog?.author}` : "Anonymous"}
                 </p>
 
                 <p className="text-xs text-gray-500 ">

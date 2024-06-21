@@ -19,6 +19,7 @@ const LatestBlogs = () => {
     fetchBlogs();
   }, []);
 
+
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
       <div className="my-8">

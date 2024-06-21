@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useUser } from "@clerk/nextjs";
 import { UploadDropzone } from "@/utils/uploadthing";
-
+//@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreateBlog = () => {
@@ -78,11 +78,8 @@ const CreateBlog = () => {
       setImage(null);
       setContent("");
       setCategory("");
-
-      // Show success message or redirect to another page
     } catch (error) {
       console.error("Error creating blog post:", error);
-      // Handle error: show error message, retry logic, etc.
     }
     setShowSuccessMsg(true);
   };
@@ -111,7 +108,7 @@ const CreateBlog = () => {
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="grid gap-8">
+          <form onSubmit={handleSubmit} className="w-full grid  gap-8 ">
             <div className="grid gap-2">
               <Label htmlFor="title">Page Title</Label>
               <Input
@@ -119,7 +116,7 @@ const CreateBlog = () => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter a title for your blog post"
+                placeholder="Enter a title"
                 className="bg-[#f3f4f6] dark:bg-[#242535] outline-none border-none focus:outline-none focus:border-none"
               />
             </div>
@@ -147,6 +144,7 @@ const CreateBlog = () => {
             <div className="grid gap-2 quill-container">
               <Label htmlFor="content">Content</Label>
               <ReactQuill
+                //@ts-ignore
                 value={content}
                 onChange={setContent}
                 className="bg-[#f3f4f6] dark:bg-[#242535] rounded-lg outline-none border-none focus:outline-none focus:border-none border-transparent"

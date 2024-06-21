@@ -40,7 +40,7 @@ const BlogCard = ({
               />
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-900 dark:text-white">
-                  {author}
+                  {author ? `${author}` : "Anonymous"}
                 </p>
                 <p className="text-xs text-gray-500">{createdAt}</p>
               </div>
