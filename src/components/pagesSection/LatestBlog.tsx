@@ -58,6 +58,7 @@ const LatestBlog = () => {
                 {latestBlog?.blog_title}
               </h3>
               <div className="mt-4 flex items-center text-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   //@ts-ignore
                   src={latestBlog?.author_avatar}

@@ -60,8 +60,9 @@ const Hero = () => {
               {latestBlog?.blog_title}
             </h2>
             <div className="mt-4 flex items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                // @ts-ignore
+                //@ts-ignore
                 src={latestBlog?.author_avatar}
                 alt="Jason Francisco"
                 className="w-10 h-10 rounded-full"

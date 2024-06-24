@@ -179,6 +179,7 @@ export function Navbar() {
                           href={`/blog/${result._id}`}
                           className="flex items-center gap-4"
                         >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={result.blog_imgPath}
                             alt="searchImg"
