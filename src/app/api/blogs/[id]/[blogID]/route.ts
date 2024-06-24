@@ -3,7 +3,7 @@ import { DATABASE_URI } from "../../../../../../connection";
 import { NextResponse } from "next/server";
 import { Blog } from "@/app/models/blog";
 
-export async function GET(req: { url: string | URL }, res: any) {
+export async function GET(req: any, res: any) {
   const { pathname } = new URL(req.url);
 
   const slug = pathname.split("/").pop();
