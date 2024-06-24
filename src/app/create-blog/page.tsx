@@ -9,6 +9,8 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useUser } from "@clerk/nextjs";
 import { UploadDropzone } from "@/utils/uploadthing";
+import { useRouter } from "next/router"; // Import useRouter from next/router
+
 //@ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -20,8 +22,10 @@ const CreateBlog = () => {
   const [category, setCategory] = useState("");
   const [mainImgUrl, setMainImgUrl] = useState("");
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
-
   const { user } = useUser();
+  const router = useRouter(); // Use useRouter hook to access query parameters
+
+  console.log("userID:", user?.id);
 
   useEffect(() => {
     function getFormattedDate() {
@@ -53,6 +57,17 @@ const CreateBlog = () => {
     getFormattedDate();
   }, []);
 
+  useEffect(() => {
+    if (router.query.id) {
+      // Populate the form fields with the data from the query parameters
+      setTitle(router.query.title as string);
+      setContent(router.query.content as string);
+      setCategory(router.query.category as string);
+      setTodayDate(router.query.created_at as string);
+      // If you have other fields to pre-fill, set them here
+    }
+  }, [router.query]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -64,28 +79,45 @@ const CreateBlog = () => {
       created_at: todayDate,
       category: category,
       author_avatar: user?.imageUrl,
+      userID: user?.id,
     };
 
     try {
-      const response = await axios.post("/api/blogs", postData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("Blog post created:", response.data);
+      let response;
+      if (router.query.id) {
+        // Edit existing blog
+        response = await axios.put(
+          `/api/blogs/${router.query.id}`,
+          postData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      } else {
+        // Create new blog
+        response = await axios.post("/api/blogs", postData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
+
+      console.log("Blog post created/edited:", response.data);
 
       setTitle("");
       setImage(null);
       setContent("");
       setCategory("");
     } catch (error) {
-      console.error("Error creating blog post:", error);
+      console.error("Error creating/editing blog post:", error);
     }
     setShowSuccessMsg(true);
   };
 
   return (
-    <div className="dark:bg-[#181A2A] dark:text-white">
+    <div className="dark:bg-[#0A0A0A] dark:text-white">
       <div className="w-full max-w-4xl mx-auto py-12 px-4 md:px-6">
         <div className="mb-8 text-left">
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
@@ -104,7 +136,9 @@ const CreateBlog = () => {
                   d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
                 ></path>
               </svg>
-              <span className="text-green-800">Your Blog has been posted</span>
+              <span className="text-green-800">
+                Your Blog has been {router.query.id ? "edited" : "posted"}
+              </span>
             </div>
           </div>
         ) : (
@@ -117,14 +151,14 @@ const CreateBlog = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a title"
-                className="bg-[#f3f4f6] dark:bg-[#242535] outline-none border-none focus:outline-none focus:border-none"
+                className="bg-[#f3f4f6] dark:bg-[#262626]  border dark:border-gray-700 border-gray-300"
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="image">Main Image</Label>
               <div
-                className="bg-[#f3f4f6] dark:bg-[#242535] flex justify-start px-5 py-5 rounded-md cursor-pointer outline-none
-          border-none focus:outline-none focus:border-none"
+                className="bg-[#f3f4f6] dark:bg-[#262626] flex justify-start px-5 py-5 rounded-md cursor-pointer
+           border dark:border-gray-700 border-gray-300"
               >
                 <UploadDropzone
                   className="w-full"
@@ -147,8 +181,7 @@ const CreateBlog = () => {
                 //@ts-ignore
                 value={content}
                 onChange={setContent}
-                className="bg-[#f3f4f6] dark:bg-[#242535] rounded-lg outline-none border-none focus:outline-none focus:border-none border-transparent"
-                theme="snow"
+                className="bg-[#f3f4f6] dark:bg-[#262626] rounded-lg outline-none  border dark:border-gray-700 border-gray-300"
               />
             </div>
             <div className="grid gap-2">
@@ -159,7 +192,7 @@ const CreateBlog = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="Enter a category"
-                className="bg-[#f3f4f6] dark:bg-[#242535] outline-none border-none focus:outline-none focus:border-none"
+                className="bg-[#f3f4f6] dark:bg-[#262626] border dark:border-gray-700 border-gray-300"
               />
             </div>
             <div className="grid gap-2">
@@ -169,11 +202,11 @@ const CreateBlog = () => {
                 type="text"
                 value={todayDate}
                 disabled
-                className="bg-[#f3f4f6] dark:bg-[#242535]"
+                className="bg-[#f3f4f6] dark:bg-[#262626]  border dark:border-gray-700 border-gray-300"
               />
             </div>
             <Button type="submit" className="w-full md:w-auto">
-              Publish Post
+              {router.query.id ? "Edit Post" : "Publish Post"}
             </Button>
           </form>
         )}

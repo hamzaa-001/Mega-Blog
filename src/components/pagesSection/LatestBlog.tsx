@@ -19,7 +19,6 @@ const LatestBlog = () => {
     fetchBlogs();
   }, []);
 
-  console.log("🚀 ~ Hero ~ latestBlog:", latestBlog);
   return (
     <div className="w-full min-h-[60vh] lg:py-10 lg:px-40 px-4">
       {isLoading ? (

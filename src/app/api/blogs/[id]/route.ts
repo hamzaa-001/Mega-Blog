@@ -10,24 +10,22 @@ interface ResponseData {
 //@ts-ignore
 export async function GET(req, res) {
   const { pathname } = new URL(req.url);
-  console.log("🚀 ~ GET ~ pathname:", pathname);
-
-  const slug = pathname.split("/").pop();
-
-  console.log("🚀 ~ GET ~ slug:", slug);
+  const userID = pathname.split("/").pop();
+  console.log("🚀 ~ GET ~ userID:", userID);
 
   try {
     await mongoose.connect(DATABASE_URI);
     console.log("DATABASE Connected...");
   } catch (error) {
-    console.error("Error:", error);
-    return NextResponse.json({ result: null, success: "false" });
+    console.error("Error connecting to database:", error);
+    return res.json({ result: null, success: false });
   }
+
   try {
-    const data = await Blog.findById(slug).exec();
-    return NextResponse.json({ result: data, success: "true" });
+    const data = await Blog.find({ userID }).exec();
+    return NextResponse.json({ result: data, success: true });
   } catch (error) {
     console.error("Error retrieving data:", error);
-    return NextResponse.json({ result: null, success: "false" });
+    return NextResponse.json({ result: null, success: false });
   }
 }

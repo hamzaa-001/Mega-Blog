@@ -50,8 +50,8 @@ const Hero = () => {
               className="w-full h-[500px] object-cover"
             />
           </div>
-          <div className="lg:w-[500px] z-10 bg-white absolute lg:-bottom-10 lg:left-10 -bottom-10 lg:p-8 p-4 rounded-lg shadow-2xl dark:bg-[#181A2A] dark:text-white mx-8">
-            <span className="inline-block bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+          <div className="lg:w-[500px] z-10 bg-white absolute lg:-bottom-10 lg:left-10 -bottom-10 lg:p-8 p-4 rounded-lg shadow-2xl dark:bg-[#151515] dark:text-white mx-8">
+            <span className="inline-block bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full border-[1px]">
               {/* @ts-ignore */}
               {latestBlog.category}
             </span>

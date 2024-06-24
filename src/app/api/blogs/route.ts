@@ -46,6 +46,7 @@ export async function POST(req: Request) {
       created_at,
       category,
       author_avatar,
+      userID,
     } = data;
 
     // Create a new blog post
@@ -57,6 +58,7 @@ export async function POST(req: Request) {
       created_at,
       category,
       author_avatar,
+      userID,
     });
 
     // Save the blog post to the database

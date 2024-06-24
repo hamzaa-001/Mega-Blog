@@ -22,6 +22,9 @@ const blogSchema = new Schema({
   category: {
     type: String,
   },
+  userID: {
+    type: String,
+  },
 });
 
 export const Blog = models["mega-blogs"] || model("mega-blogs", blogSchema);

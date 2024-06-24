@@ -111,19 +111,19 @@
 }
 
 .dark .quill-container .ql-container {
-  background-color: #242535;
+  background-color: #262626;
   border: none;
   border-radius: 0.375rem;
 }
 
 .dark .quill-container .ql-editor {
-  background-color: #242535;
+  background-color: #262626;
   border: none;
   border-radius: 0.375rem;
 }
 
 .dark .quill-container .ql-toolbar {
-  background-color: #242535;
+  background-color: #262626;
   border: none;
   border-radius: 0.375rem 0.375rem 0 0;
 }

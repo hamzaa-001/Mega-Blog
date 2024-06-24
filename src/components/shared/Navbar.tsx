@@ -12,6 +12,7 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { FaPlus } from "react-icons/fa6";
+import { IoMdSettings } from "react-icons/io";
 
 const menuItems = [
   {
@@ -58,9 +59,7 @@ export function Navbar() {
 
         const jsonData = await response.json();
         const data = jsonData.result;
-        console.log("🚀 ~ fetchBlogs ~ data:", data);
 
-        // const data = jsonData.result;
         if (Array.isArray(data)) {
           //@ts-ignore
           setBlogs(data);
@@ -126,7 +125,7 @@ export function Navbar() {
   const { user, isSignedIn } = useUser();
 
   return (
-    <div className="dark:bg-[#181A2A] relative w-full bg-white">
+    <div className="dark:bg-[#151515] relative w-full bg-white border-b-[1px] ">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
@@ -156,7 +155,7 @@ export function Navbar() {
 
         <div className="flex grow justify-end items-center">
           <div className="relative">
-            <div className="flex items-center h-10 w-[200px] rounded-lg bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#242535]">
+            <div className="flex items-center h-10 w-[200px] rounded-lg bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#262626] border dark:border-gray-700 border-gray-300 ">
               <input
                 className="bg-transparent focus:border-none focus:outline-none"
                 type="text"
@@ -170,7 +169,7 @@ export function Navbar() {
             {searchResults.length > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute p-4 top-12 -left-32  md:-left-20 w-[180%] md:w-[200%] bg-white dark:bg-[#242535] shadow-2xl rounded-lg max-h-960 overflow-y-auto z-50 no-scrollbar"
+                className="absolute p-4 top-12 -left-32  md:-left-20 w-[180%] md:w-[200%] bg-white dark:bg-[#1F1F1F] shadow-2xl rounded-lg max-h-960 overflow-y-auto z-50 no-scrollbar"
               >
                 <ul className="list-none">
                   {searchResults.map((result: any) => (
@@ -202,15 +201,26 @@ export function Navbar() {
               className={`${isSignedIn ? "block" : "hidden"}`}
             >
               <button
-                className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
+                className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
                 title="Create New Blog"
               >
                 <FaPlus />
               </button>
             </Link>
+            <Link
+              href={"/dashboard"}
+              className={`${isSignedIn ? "block" : "hidden"}`}
+            >
+              <button
+                className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
+                title="dashboard"
+              >
+                <IoMdSettings />
+              </button>
+            </Link>
 
             <button
-              className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
+              className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
               title="Change Theme"
               onClick={toggleTheme}
             >
@@ -273,6 +283,28 @@ export function Navbar() {
                   </nav>
                 </div>
                 <div className="ml-3 mt-4 flex items-center space-x-2">
+                  <Link
+                    href={"/create-blog"}
+                    className={`${isSignedIn ? "block" : "hidden"}`}
+                  >
+                    <button
+                      className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
+                      title="Create New Blog"
+                    >
+                      <FaPlus />
+                    </button>
+                  </Link>
+                  <Link
+                    href={"/dashboard"}
+                    className={`${isSignedIn ? "block" : "hidden"}`}
+                  >
+                    <button
+                      className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
+                      title="dashboard"
+                    >
+                      <IoMdSettings />
+                    </button>
+                  </Link>
                   <button
                     className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#242535]"
                     onClick={toggleTheme}

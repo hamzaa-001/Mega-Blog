@@ -38,10 +38,8 @@ export default function ContactPage() {
       });
   };
 
-  console.log("🚀 ~ ContactPage ~ userContactDetails:", userContactDetails);
-
   return (
-    <div className="dark:bg-[#181A2A] dark:text-white">
+    <div className="dark:bg-[#0A0A0A] dark:text-white">
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="text-center">
@@ -80,7 +78,7 @@ export default function ContactPage() {
                     type="text"
                     placeholder="Your name"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
+                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-[#262626]"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -92,7 +90,7 @@ export default function ContactPage() {
                     type="email"
                     placeholder="Your email address"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
+                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-gray-300"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -105,7 +103,7 @@ export default function ContactPage() {
                   rows={5}
                   placeholder="Your message"
                   required
-                  className="bg-[#f3f4f6] dark:bg-[#242535]  outline-none border-none  focus:outline-none focus:border-none dark:placeholder:text-gray-500"
+                  className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-gray-300"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />

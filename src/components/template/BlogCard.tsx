@@ -2,7 +2,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import ProfileDemo from "@/../public/profile-demo.png";
 import Link from "next/link";
 
 const BlogCard = ({
@@ -16,7 +15,7 @@ const BlogCard = ({
 }) => {
   return (
     <>
-      <div className="w-[300px] p-2 bg-white dark:bg-[#181A2A] rounded-lg overflow-hidden outline-1 outline-offset-8 outline-gray-300 outline-double dark:outline-gray-700">
+      <div className="w-[300px] p-2 bg-white dark:bg-[#0A0A0A] rounded-lg overflow-hidden outline-1 outline-offset-8  outline-double dark:outline-gray-700">
         <Link href={`/blog/${id}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -29,7 +28,7 @@ const BlogCard = ({
               {category}
             </span>
             <h2 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-              {title}
+              {title.slice(0, 45)}...
             </h2>
             <div className="mt-4 flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -19,7 +19,6 @@ const LatestBlogs = () => {
     fetchBlogs();
   }, []);
 
-
   return (
     <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
       <div className="my-8">
@@ -32,7 +31,7 @@ const LatestBlogs = () => {
           ? Array.from({ length: 6 }).map((_, index) => (
               <SkeletonCard key={index} />
             ))
-          : allBlogs.map((blog, index) => (
+          : allBlogs.slice(0, 6).map((blog, index) => (
               <BlogCard
                 key={index}
                 //@ts-ignore
@@ -56,12 +55,7 @@ const LatestBlogs = () => {
       </div>
       <div className="flex items-center justify-center mt-10">
         <Link href={"/all-blogs"}>
-          <Button
-            variant="outline"
-            className="dark:bg-[#181A2A] dark:hover:bg-[#242535]"
-          >
-            View All Blogs
-          </Button>
+          <Button variant="outline">View All Blogs</Button>
         </Link>
       </div>
     </div>

@@ -3,7 +3,7 @@ import SingleBlog from "@/components/pagesSection/singleBlog/SingleBlog";
 
 const SingleBlogPage = () => {
   return (
-    <div className="dark:bg-[#181A2A] dark:text-white">
+    <div className="dark:bg-[#0A0A0A] dark:text-white">
       <SingleBlog />
     </div>
   );

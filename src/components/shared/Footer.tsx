@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-10 dark:bg-[#141624]">
+    <footer className="bg-gray-100 py-10 dark:bg-[#151515] border-t-[1px]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:flex lg:justify-between">
           <div className="lg:w-4/6 w-full mb-8 lg:mb-0">
@@ -112,7 +112,7 @@ const Footer = () => {
               <form className="mt-4 flex flex-col gap-2">
                 <input
                   type="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none  dark:bg-[#242535] text-xs"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none  dark:bg-[#262626] text-xs"
                   placeholder="Your Email"
                 />
                 <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-xs">

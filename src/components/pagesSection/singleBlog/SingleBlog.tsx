@@ -3,16 +3,18 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import "./singleBlog.css";
+import { useUser } from "@clerk/nextjs";
 
 const SingleBlog = () => {
   const params = useParams();
   const id = params.id;
   const [singleBlog, setSingleBlog] = useState(null);
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`/api/blogs/${id}`);
+        const response = await fetch(`/api/blogs/${user?.id}/${id}`);
         const data = await response.json();
         setSingleBlog(data.result);
       } catch (error) {
