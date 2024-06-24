@@ -25,7 +25,7 @@ export async function GET(req: any, res: any) {
   }
 }
 
-export async function DELETE(req: { url: string | URL }, res: any) {
+export async function DELETE(req: any, res: any) {
   const { pathname } = new URL(req.url);
   const slug = pathname.split("/").pop();
 
