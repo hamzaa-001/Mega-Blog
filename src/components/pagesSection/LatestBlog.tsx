@@ -46,12 +46,14 @@ const LatestBlog = () => {
               alt="Main Image"
               className="relative w-full h-[500px] object-cover z-0"
             />
-            <div className="lg:w-full bottom-0 absolute z-10 p-6  flex flex-col ">
-              <span className="inline-block max-w-32 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full">
+            <div className="absolute inset-0 bg-black opacity-50 z-10"></div>{" "}
+            {/* Black overlay */}
+            <div className="lg:w-full bottom-0 absolute z-20 p-6 flex flex-col">
+              <span className=" max-w-20 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full flex justify-center items-center">
                 {/* @ts-ignore */}
                 {latestBlog?.category}
               </span>
-              <h3 className="mt-4 text-2xl font-semibold text-white dark:text-white">
+              <h3 className="lg:w-[60%] w-full mt-4 text-2xl font-semibold text-white dark:text-white">
                 {/* @ts-ignore */}
                 {latestBlog?.blog_title}
               </h3>
