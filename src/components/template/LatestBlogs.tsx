@@ -53,7 +53,7 @@ const LatestBlogs = () => {
               />
             ))}
       </div>
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center my-10">
         <Link href={"/all-blogs"}>
           <Button variant="outline">View All Blogs</Button>
         </Link>

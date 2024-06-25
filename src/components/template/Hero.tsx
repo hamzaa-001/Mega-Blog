@@ -21,7 +21,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-[100vh] lg:py-10 lg:px-40 px-4">
+    <div className="w-full min-h-[75vh] lg:py-10 py-5 lg:px-40 px-4">
       {isLoading ? (
         <div
           role="status"

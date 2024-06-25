@@ -1,20 +1,20 @@
 h1 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold
 }
 
 h4 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold
 }
 
@@ -35,4 +35,9 @@ ul {
 
 .dangerous-div {
     min-height: auto;
+}
+
+.blog-img {
+    background-position: center center;
+    background-size: max(1400px, 100vw);
 }

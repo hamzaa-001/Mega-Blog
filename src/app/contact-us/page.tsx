@@ -16,10 +16,11 @@ export default function ContactPage() {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
   const userContactDetails = {
-    name: name,
-    email: email,
+    from_name: name,
+    email_id: email,
     message: message,
   };
+  console.log("🚀 ~ ContactPage ~ userContactDetails:", userContactDetails);
 
   const handleSendEmail = (e: any) => {
     e.preventDefault();

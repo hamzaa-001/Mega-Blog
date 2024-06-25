@@ -129,13 +129,15 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
-            <Image
-              src={isDarkMode ? LogoDark : Logo}
-              className="logo"
-              width={100}
-              height={100}
-              alt="Logo"
-            />
+            <Link href={"/"}>
+              <Image
+                src={isDarkMode ? LogoDark : Logo}
+                className="logo"
+                width={100}
+                height={100}
+                alt="Logo"
+              />
+            </Link>
           </span>
         </div>
         <div className="hidden lg:block">
@@ -281,8 +283,21 @@ export function Navbar() {
                         </span>
                       </Link>
                     ))}
+                    <div className="ml-3">
+                      {isSignedIn ? (
+                        <div className="flex gap-2 items-center">
+                          <UserButton />
+                          {user?.fullName}
+                        </div>
+                      ) : (
+                        <Link href={"/sign-up"}>
+                          <Button variant="default">Sign up</Button>
+                        </Link>
+                      )}
+                    </div>
                   </nav>
                 </div>
+
                 <div className="ml-3 mt-4 flex items-center space-x-2">
                   <Link
                     href={"/create-blog"}

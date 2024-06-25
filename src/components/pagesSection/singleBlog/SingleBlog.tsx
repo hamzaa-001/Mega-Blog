@@ -62,11 +62,11 @@ const SingleBlog = () => {
             </div>
           </div>
         </div>
-        <div className="mb-6">
+        <div className="mb-6 blog-img">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={blog_imgPath}
-            className="w-[800px] h-[400px] rounded-lg"
+            className="w-[800px] h-[400px] rounded-lg "
             alt="main-img"
           />
         </div>

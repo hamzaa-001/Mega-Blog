@@ -28,7 +28,7 @@ const BlogCard = ({
               {category}
             </span>
             <h2 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
-              {title.slice(0, 45)}...
+              {title.slice(0, 40)}...
             </h2>
             <div className="mt-4 flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
