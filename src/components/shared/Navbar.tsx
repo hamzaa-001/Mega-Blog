@@ -171,7 +171,7 @@ export function Navbar() {
             {searchResults.length > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute p-4 top-12 -left-32  md:-left-20 w-[180%] md:w-[200%] bg-white dark:bg-[#1F1F1F] shadow-2xl rounded-lg max-h-960 overflow-y-auto z-50 no-scrollbar"
+                className="absolute max-h-[500px] p-4 top-12 -left-32 md:-left-20 w-[180%] md:w-[200%] bg-white dark:bg-[#1F1F1F] shadow-2xl rounded-lg max-h-960 overflow-y-auto z-50 no-scrollbar"
               >
                 <ul className="list-none">
                   {searchResults.map((result: any) => (
@@ -185,7 +185,7 @@ export function Navbar() {
                           <img
                             src={result.blog_imgPath}
                             alt="searchImg"
-                            className="w-20 h-50 rounded-md"
+                            className="w-20 h-15 rounded-md object-cover"
                           />
                           {result.blog_title}
                         </Link>
