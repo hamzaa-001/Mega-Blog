@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import profilePic from "@/../public/profile-demo.png";
 
 const LatestBlog = () => {
   const [latestBlog, setLatestBlog] = useState([]);
@@ -49,7 +47,7 @@ const LatestBlog = () => {
               className="relative w-full h-[500px] object-cover z-0"
             />
             <div className="lg:w-full bottom-0 absolute z-10 p-6  flex flex-col ">
-              <span className="inline-block max-w-24 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full">
+              <span className="inline-block max-w-32 bg-blue-600 text-white text-xs font-medium px-2 py-1 rounded-full">
                 {/* @ts-ignore */}
                 {latestBlog?.category}
               </span>

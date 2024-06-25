@@ -11,14 +11,18 @@ const Hero = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch(`/api/blogs`);
-      const data = await response.json();
-      const slug = data.result.pop();
-      setLatestBlog(slug);
-      setIsLoading(false);
+      if (isLoading) {
+        const response = await fetch(`/api/blogs`);
+        const data = await response.json();
+        const blogs = data.result;
+
+        const randomBlog = blogs[Math.floor(Math.random() * blogs.length)];
+        setLatestBlog(randomBlog);
+        setIsLoading(false);
+      }
     };
     fetchBlogs();
-  }, []);
+  }, [isLoading]);
 
   return (
     <div className="w-full min-h-[75vh] lg:py-10 py-5 lg:px-40 px-4">
@@ -53,7 +57,7 @@ const Hero = () => {
           <div className="lg:w-[500px] z-10 bg-white absolute lg:-bottom-10 lg:left-10 -bottom-10 lg:p-8 p-4 rounded-lg shadow-2xl dark:bg-[#151515] dark:text-white mx-8">
             <span className="inline-block bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full border-[1px]">
               {/* @ts-ignore */}
-              {latestBlog.category}
+              {latestBlog?.category}
             </span>
             <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
               {/* @ts-ignore */}
@@ -64,7 +68,7 @@ const Hero = () => {
               <img
                 //@ts-ignore
                 src={latestBlog?.author_avatar}
-                alt="Jason Francisco"
+                alt="Author Avatar"
                 className="w-10 h-10 rounded-full"
               />
               <div className="ml-3">
@@ -72,8 +76,7 @@ const Hero = () => {
                   {/* @ts-ignore */}
                   {latestBlog?.author ? `${latestBlog?.author}` : "Anonymous"}
                 </p>
-
-                <p className="text-xs text-gray-500 ">
+                <p className="text-xs text-gray-500">
                   {/* @ts-ignore */}
                   {latestBlog?.created_at}
                 </p>
