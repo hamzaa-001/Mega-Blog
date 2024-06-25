@@ -22,7 +22,7 @@ const SingleBlog = () => {
       }
     };
     fetchBlog();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   if (!singleBlog) {
@@ -71,7 +71,7 @@ const SingleBlog = () => {
           />
         </div>
         <div
-          className="space-y-6 text-gray-400 dangerous-div"
+          className="space-y-6 text-gray-700 dark:text-gray-300 dangerous-div"
           dangerouslySetInnerHTML={{ __html: blog_content }}
         ></div>
       </div>
