@@ -53,3 +53,42 @@ export async function DELETE(req: any, res: any) {
     return NextResponse.json({ success: false, error: "Error deleting blog" });
   }
 }
+
+export async function PATCH(req: any, res: any) {
+  const { pathname } = new URL(req.url);
+  const slug = pathname.split("/").pop();
+  const { blog_title, blog_content, category, blog_imgPath } = await req.json();
+
+  try {
+    await mongoose.connect(DATABASE_URI);
+    console.log("DATABASE Connected...");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    return NextResponse.json({
+      success: false,
+      error: "Database connection error",
+    });
+  }
+
+  try {
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      slug,
+      {
+        blog_title,
+        blog_content,
+        category,
+        blog_imgPath,
+      },
+      { new: true }
+    ).exec();
+    if (!updatedBlog) {
+      console.error("Blog not found for update:", slug);
+      return NextResponse.json({ success: false, error: "Blog not found" });
+    }
+    console.log("Blog updated successfully:", slug);
+    return NextResponse.json({ result: updatedBlog, success: true });
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    return NextResponse.json({ success: false, error: "Error updating blog" });
+  }
+}

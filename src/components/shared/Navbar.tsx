@@ -155,7 +155,7 @@ export function Navbar() {
 
         <div className="flex grow justify-end items-center">
           <div className="relative">
-            <div className="flex items-center h-10 w-[200px] rounded-lg bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#262626] border dark:border-gray-700 border-gray-300 ">
+            <div className="flex items-center h-10 w-[200px] rounded-lg bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#262626] border ">
               <input
                 className="bg-transparent focus:border-none focus:outline-none"
                 type="text"

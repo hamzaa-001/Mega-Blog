@@ -78,7 +78,7 @@ export default function ContactPage() {
                     type="text"
                     placeholder="Your name"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-[#262626]"
+                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -90,7 +90,7 @@ export default function ContactPage() {
                     type="email"
                     placeholder="Your email address"
                     required
-                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-gray-300"
+                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -103,7 +103,7 @@ export default function ContactPage() {
                   rows={5}
                   placeholder="Your message"
                   required
-                  className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border dark:border-gray-700 border-gray-300"
+                  className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border "
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
