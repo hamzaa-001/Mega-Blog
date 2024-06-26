@@ -3,7 +3,7 @@ const SkeletonCard = () => {
     <div>
       <div
         role="status"
-        className="w-[300px] p-3 border border-gray-200 rounded-2xl shadow animate-pulse md:p-3 dark:border-gray-700"
+        className="w-[300px] p-3 border border-gray-200 rounded-2xl shadow animate-pulse md:p-3 dark:border-[#151515]"
       >
         <div className="flex items-center justify-center rounded-2xl h-48 mb-4 bg-gray-300 dark:bg-gray-700">
           <svg

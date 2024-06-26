@@ -22,7 +22,7 @@ const LatestBlog = () => {
       {isLoading ? (
         <div
           role="status"
-          className="flex w-full h-[500px] items-center justify-center bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700"
+          className="flex w-full h-[500px] items-center justify-center bg-gray-300 rounded-lg animate-pulse dark:bg-[#151515]"
         >
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
