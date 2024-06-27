@@ -277,6 +277,7 @@ export function Navbar() {
                         key={item.name}
                         href={item.href}
                         className="-m-3 flex items-center rounded-md p-3 text-sm dark:text-white"
+                        onClick={toggleMenu}
                       >
                         <span className="ml-3 text-base font-medium text-gray-900 dark:text-white">
                           {item.name}
@@ -290,7 +291,7 @@ export function Navbar() {
                           {user?.fullName}
                         </div>
                       ) : (
-                        <Link href={"/sign-up"}>
+                        <Link href={"/sign-up"} onClick={toggleMenu}>
                           <Button variant="default">Sign up</Button>
                         </Link>
                       )}
@@ -302,6 +303,7 @@ export function Navbar() {
                   <Link
                     href={"/create-blog"}
                     className={`${isSignedIn ? "block" : "hidden"}`}
+                    onClick={toggleMenu}
                   >
                     <button
                       className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
@@ -313,6 +315,7 @@ export function Navbar() {
                   <Link
                     href={"/dashboard"}
                     className={`${isSignedIn ? "block" : "hidden"}`}
+                    onClick={toggleMenu}
                   >
                     <button
                       className="h-10 w-10 flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-[#262626]"
