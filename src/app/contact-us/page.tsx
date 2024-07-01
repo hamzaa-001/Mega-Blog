@@ -1,29 +1,37 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
-import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 
-export default function ContactPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+const ContactPage = () => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
 
-  const userContactDetails = {
-    from_name: name,
-    email_id: email,
-    message: message,
-  };
-  console.log("🚀 ~ ContactPage ~ userContactDetails:", userContactDetails);
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    message: Yup.string().required("Message is required"),
+  });
 
-  const handleSendEmail = (e: any) => {
-    e.preventDefault();
+  const handleSendEmail = (
+    values: { name: any; email: any; message: any },
+    { resetForm }: any
+  ) => {
+    const userContactDetails = {
+      from_name: values.name,
+      email_id: values.email,
+      message: values.message,
+    };
+
     emailjs
       .send(
         "service_yzoe5cv",
@@ -32,15 +40,16 @@ export default function ContactPage() {
         "a6NPBLqd_7WpiPW_h"
       )
       .then(function (res) {
-        let form = document.querySelector(".contact-form");
-        //@ts-ignore
-        form.style.display = "none";
         setShowSuccessMsg(true);
+        resetForm();
+      })
+      .catch(function (error) {
+        console.error("Error sending email:", error);
       });
   };
 
   return (
-    <div className="dark:bg-[#0A0A0A] dark:text-white">
+    <div className="dark:bg-[#0A0A0A] dark:text-white min-h-screen flex items-center justify-center">
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="text-center">
@@ -70,51 +79,71 @@ export default function ContactPage() {
               </div>
             </div>
           ) : (
-            <form className="space-y-6 contact-form" onSubmit={handleSendEmail}>
-              <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
-                <div>
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Your email address"
-                    required
-                    className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  rows={5}
-                  placeholder="Your message"
-                  required
-                  className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border "
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-              </div>
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
+            <Formik
+              initialValues={{ name: "", email: "", message: "" }}
+              validationSchema={validationSchema}
+              onSubmit={handleSendEmail}
+            >
+              {({ isSubmitting }) => (
+                <Form className="space-y-6 contact-form">
+                  <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                    <div>
+                      <Label htmlFor="name">Name</Label>
+                      <Field
+                        as={Input}
+                        name="name"
+                        type="text"
+                        placeholder="Your name"
+                        className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border rounded-md p-2"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="text-red-500 text-xs mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email</Label>
+                      <Field
+                        as={Input}
+                        name="email"
+                        type="email"
+                        placeholder="Your email address"
+                        className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border rounded-md p-2"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="text-red-500 text-xs mt-1"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="message">Message</Label>
+                    <Field
+                      as={Textarea}
+                      name="message"
+                      rows={5}
+                      placeholder="Your message"
+                      className="bg-[#f3f4f6] dark:bg-[#262626] dark:placeholder:text-gray-500 border rounded-md p-2"
+                    />
+                    <ErrorMessage
+                      name="message"
+                      component="div"
+                      className="text-red-500 text-xs mt-1"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </Form>
+              )}
+            </Formik>
           )}
-
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div>
               <h3 className="text-lg font-medium">Email Address</h3>
@@ -159,63 +188,6 @@ export default function ContactPage() {
       </div>
     </div>
   );
-}
+};
 
-function FacebookIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  );
-}
-
-function InstagramIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
-
-function TwitterIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-    </svg>
-  );
-}
+export default ContactPage;
